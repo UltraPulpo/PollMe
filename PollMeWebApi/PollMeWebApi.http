@@ -1,0 +1,6 @@
+@PollMeWebApi_HostAddress = http://localhost:5207
+
+GET {{PollMeWebApi_HostAddress}}/polls/
+Accept: application/json
+
+###

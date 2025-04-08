@@ -1,42 +1,61 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Ignore node_modules directory
+node_modules/
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Ignore log files
+*.log
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# Ignore environment variables
+.env
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Ignore build output
+dist/
+build/
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
+# Ignore OS-specific files
 .DS_Store
 Thumbs.db
+
+# Ignore editor-specific files
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Ignore npm debug files
+npm-debug.log*
+
+# Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.pdb
+*.obj
+*.dll
+*.exe
+*.log
+*.tlog
+*.lastcodeanalysissucceeded
+*.ide
+*.sdf
+*.opensdf
+*.ipch
+*.aps
+*.ncb
+*.iobj
+*.ipdb
+*.idb
+*.pch
+*.bsc
+*.ilk
+*.dmp
+*.tmp
+*.tmp_proj
+*.userosscache
+*.rsuser
+*.rsuse
+
+# VS Code
+.vscode/
