@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PollMeWebApi.Interfaces;
 using PollMeWebApi.Models;
 
 namespace PollMeWebApi.Controllers;
@@ -7,11 +8,14 @@ namespace PollMeWebApi.Controllers;
 [ApiController]
 public class PollsController : ControllerBase
 {
-    private static List<Poll> Polls =
-    [
-        new() { Id = 1, Name = "poll-test-1", Description = "This is a test poll" },
-        new() { Id = 2, Name = "poll-test-2", Description = "This is another test poll" },
-    ];
+    private readonly IPollService _pollService;
+    private List<Poll> Polls;
+
+    public PollsController(IPollService pollService)
+    {
+        _pollService = pollService;
+        Polls = _pollService.GeneratePolls();
+    }
 
     [HttpGet]
     public ActionResult<IEnumerable<Poll>> GetAllPolls()

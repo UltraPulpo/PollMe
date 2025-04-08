@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollMeWebApi", "PollMeWebApi\PollMeWebApi.csproj", "{F7E1446B-0ADC-4804-B9F4-A632CAEAD048}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollMeWebApi.Tests", "PollMeWebApi.Tests\PollMeWebApi.Tests.csproj", "{B1934E50-24FB-4F92-8FD4-428CDD6484DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,18 @@ Global
 		{F7E1446B-0ADC-4804-B9F4-A632CAEAD048}.Release|x64.Build.0 = Release|Any CPU
 		{F7E1446B-0ADC-4804-B9F4-A632CAEAD048}.Release|x86.ActiveCfg = Release|Any CPU
 		{F7E1446B-0ADC-4804-B9F4-A632CAEAD048}.Release|x86.Build.0 = Release|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Debug|x64.Build.0 = Debug|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Debug|x86.Build.0 = Debug|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Release|x64.ActiveCfg = Release|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Release|x64.Build.0 = Release|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Release|x86.ActiveCfg = Release|Any CPU
+		{B1934E50-24FB-4F92-8FD4-428CDD6484DC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
