@@ -19,7 +19,12 @@ Thumbs.db
 *.swp
 *.swo
 .idea/
-.vscode/
+.vscode/*
+
+# Exceptions
+!/.vscode/extensions.json
+!/.vscode/launch.json
+!/.vscode/tasks.json
 
 # Ignore npm debug files
 npm-debug.log*
