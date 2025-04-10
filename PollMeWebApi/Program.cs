@@ -5,12 +5,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddTransient<IPollService, PollService>();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Register PollService with the JSON file path
+var dataFilePath = Path.Combine(AppContext.BaseDirectory, "Data", "polls.json");
+builder.Services.AddSingleton<IPollService>(new PollService(dataFilePath));
+
+// Register swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Register CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp",

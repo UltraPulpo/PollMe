@@ -1,0 +1,17 @@
+[
+    {
+      "Id": 1,
+      "Name": "poll-test-1",
+      "Description": "This is a test poll"
+    },
+    {
+      "Id": 2,
+      "Name": "poll-test-2",
+      "Description": "This is another test poll"
+    },
+    {
+      "Id": 3,
+      "Name": "poll-test-3",
+      "Description": "This is yet another test poll"
+    }
+]

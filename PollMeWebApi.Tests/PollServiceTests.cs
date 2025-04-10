@@ -1,18 +1,37 @@
 ﻿using FluentAssertions;
 using PollMeWebApi.Models;
 using PollMeWebApi.Services;
+using System.Text.Json;
 
 namespace PollMeWebApi.Tests
 {
     public class PollServiceTests
     {
+        private string _testFilePath;
         private PollService _pollService;
 
         [SetUp]
         public void SetUp()
         {
-            // Instantiate your service directly. No mocks needed as it is self-contained.
-            _pollService = new PollService();
+            _testFilePath = Path.GetTempFileName();
+            var mockJson = JsonSerializer.Serialize(new[]
+            {
+                new { Id = 1, Name = "poll-test-1", Description = "This is a test poll" },
+                new { Id = 2, Name = "poll-test-2", Description = "This is another test poll" }
+            });
+            File.WriteAllText(_testFilePath, mockJson);
+
+            _pollService = new PollService(_testFilePath);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            // Clean up the temporary file
+            if (File.Exists(_testFilePath))
+            {
+                File.Delete(_testFilePath);
+            }
         }
 
         [Test]
