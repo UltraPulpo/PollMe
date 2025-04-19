@@ -1,10 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { PollService } from './services/poll.service';
+import { of } from 'rxjs';
 
 describe('AppComponent', () => {
+  let mockPollService: jasmine.SpyObj<PollService>;
+
   beforeEach(async () => {
+    mockPollService = jasmine.createSpyObj('PollService', ['getPolls']);
+    mockPollService.getPolls.and.returnValue(of([]));
+
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [
+        { provide: PollService, useValue: mockPollService },
+      ],
     }).compileComponents();
   });
 
