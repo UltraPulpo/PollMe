@@ -1,0 +1,14 @@
+<div class="polls-container">
+    <h1>Polls Management</h1>
+
+    <!-- Render the polls-list component and pass the polls array -->
+    <app-polls-list [polls]="polls"></app-polls-list>
+
+    <!-- Buttons for CRUD operations -->
+    <div class="crud-buttons">
+      <button (click)="addPoll()">Add Poll</button>
+      <button *ngFor="let poll of polls" (click)="deletePoll(poll.id)">
+        Delete {{ poll.name }}
+      </button>
+    </div>
+  </div>
