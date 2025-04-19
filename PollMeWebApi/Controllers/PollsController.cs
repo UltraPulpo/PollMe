@@ -14,32 +14,41 @@ public class PollsController : ControllerBase
     public PollsController(IPollService pollService)
     {
         _pollService = pollService;
-        Polls = _pollService.GeneratePolls();
+        Polls = _pollService.GetPolls();
     }
 
     [HttpGet]
     public ActionResult<IEnumerable<Poll>> GetAllPolls()
     {
-        return Ok(Polls);
+        return Ok(_pollService.GetPolls());
     }
 
     [HttpGet("{id}")]
     public ActionResult<Poll> GetPollById(int id)
     {
-        var poll = Polls.Find(p => p.Id == id);
+        var poll = _pollService.GetPollById(id);
         if (poll == null)
-        {
             return NotFound();
-        }
+
         return Ok(poll);
     }
 
     [HttpPost]
-    public ActionResult<Poll> CreatePoll(Poll poll)
+    public ActionResult<Poll> CreatePoll(Poll newPoll)
     {
-        poll.Id = Polls.Count + 1;
-        Polls.Add(poll);
-        return CreatedAtAction(nameof(GetPollById), new { id = poll.Id }, poll);
+        var createdPoll = _pollService.CreatePoll(newPoll);
+        
+        return CreatedAtAction(nameof(GetPollById), new { id = newPoll.Id }, newPoll);
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult DeletePoll(int id)
+    {
+        var isDeleted = _pollService.DeletePoll(id);
+        if (!isDeleted)
+            return NotFound();
+        
+        return NoContent();
     }
 
     [HttpPut("{id}")]
@@ -56,15 +65,5 @@ public class PollsController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id}")]
-    public ActionResult DeletePoll(int id)
-    {
-        var poll = Polls.Find(p => p.Id == id);
-        if (poll == null)
-        {
-            return NotFound();
-        }
-        Polls.Remove(poll);
-        return NoContent();
-    }
+
 }
