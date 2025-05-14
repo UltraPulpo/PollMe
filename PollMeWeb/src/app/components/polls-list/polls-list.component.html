@@ -1,6 +1,8 @@
-<h2>Poll List</h2>
-<ul>
-  <li *ngFor="let poll of polls">
-    {{ poll.name }} - {{ poll.description }}
-  </li>
-</ul>
+<div class="polls-list">
+  <h2>Polls</h2>
+  <ul>
+    <li *ngFor="let poll of polls">
+      <strong>{{ poll.name }}</strong>: {{ poll.description }}
+    </li>
+  </ul>
+</div>

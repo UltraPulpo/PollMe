@@ -4,5 +4,8 @@ namespace PollMeWebApi.Interfaces;
 
 public interface IPollService
 {
-    List<Poll> GeneratePolls();
+    Poll CreatePoll(Poll newPoll);
+    bool DeletePoll(int id);
+    List<Poll> GetPolls();
+    Poll? GetPollById(int id);
 }

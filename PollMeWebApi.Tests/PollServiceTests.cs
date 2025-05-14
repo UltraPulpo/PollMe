@@ -8,7 +8,7 @@ namespace PollMeWebApi.Tests
     public class PollServiceTests
     {
         private string _testFilePath;
-        private PollService _pollService;
+        private PollService _sut;
 
         [SetUp]
         public void SetUp()
@@ -21,7 +21,7 @@ namespace PollMeWebApi.Tests
             });
             File.WriteAllText(_testFilePath, mockJson);
 
-            _pollService = new PollService(_testFilePath);
+            _sut = new PollService(_testFilePath);
         }
 
         [TearDown]
@@ -35,10 +35,51 @@ namespace PollMeWebApi.Tests
         }
 
         [Test]
-        public void GeneratePolls_ShouldReturnStaticPollList()
+        public void CreatePoll_ShouldAddNewPollToList()
+        {
+            // Arrange
+            var newPoll = new Poll
+            {
+                Name = "New Poll",
+                Description = "This is a new poll"
+            };
+
+            // Act
+            var createdPoll = _sut.CreatePoll(newPoll);
+
+            // Assert
+            createdPoll.Should().NotBeNull("because the service should return the created poll");
+            createdPoll.Id.Should().Be(3, "because it should be the next available ID");
+            createdPoll.Name.Should().Be("New Poll3", "because the service appends the ID to the name");
+            createdPoll.Description.Should().Be("This is a new poll");
+
+            var polls = _sut.GetPolls();
+            polls.Should().HaveCount(3, "because a new poll was added");
+            polls[2].Should().BeEquivalentTo(createdPoll, "because the created poll should match the one in the list");
+        }
+
+        [Test]
+        public void DeletePoll_ShouldRemovePollFromList()
+        {
+            // Arrange
+            var pollIdToDelete = 1;
+
+            // Act
+            var isDeleted = _sut.DeletePoll(pollIdToDelete);
+
+            // Assert
+            isDeleted.Should().BeTrue("because the poll with the given ID exists and should be deleted");
+
+            var polls = _sut.GetPolls();
+            polls.Should().HaveCount(1, "because one poll was deleted");
+            polls.Should().NotContain(p => p.Id == pollIdToDelete, "because the poll with the given ID should no longer exist");
+        }
+
+        [Test]
+        public void GetPolls_ShouldReturnStaticPollList()
         {
             // Act
-            List<Poll> polls = _pollService.GeneratePolls();
+            List<Poll> polls = _sut.GetPolls();
 
             // Assert
             polls.Should().NotBeNull("because the service should return a valid list");
