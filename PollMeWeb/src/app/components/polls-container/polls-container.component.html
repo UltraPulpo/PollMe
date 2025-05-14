@@ -1,0 +1,27 @@
+<div class="polls-container">
+    <h1>Polls Management</h1>
+
+    <!-- Render the polls-list component and pass the polls array -->
+    <app-polls-list [polls]="polls"></app-polls-list>
+
+    <div class="add-button">
+      <button (click)="addPoll()">Add Poll</button>
+    </div>
+
+    <!-- Dropdown menu for selecting a poll -->
+    <div class="poll-dropdown">
+      <label for="pollSelect">Select a Poll:</label>
+      <select id="pollSelect" [(ngModel)]="selectedPoll" (change)="onPollSelect($event)">
+        <option [ngValue]="" disabled selected></option>
+        <option *ngFor="let poll of polls" [ngValue]="poll">{{ poll.name }}</option>
+      </select>
+    </div>
+
+    <div class="delete-button">
+      <button (click)="deleteSelectedPoll()" [disabled]="!selectedPoll">Delete selected poll</button>
+    </div>
+
+    <div class="modify-button">
+      <button (click)="modifySelectedPoll()" [disabled]="!selectedPoll">Modify selected poll</button>
+    </div>
+  </div>
